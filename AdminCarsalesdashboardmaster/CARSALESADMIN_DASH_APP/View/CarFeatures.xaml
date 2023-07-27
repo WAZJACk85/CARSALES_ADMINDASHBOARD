@@ -1,0 +1,152 @@
+﻿<UserControl x:Name="FeaturesWindow" x:Class="NewDesignTrial.View.CarFeatures"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewDesignTrial.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="625" Loaded="FeaturesWindow_Loaded">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+        <Grid x:Name="AllFeatures"  Margin="5,5,5,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+<!--Information about features -->
+        <Grid Name="featuresGrid"
+            Grid.ColumnSpan="4" 
+              Margin="5,5,5,5" 
+              Grid.RowSpan="5" 
+              Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource text}" 
+                       Grid.Row="0"
+                       Grid.Column="0"
+                Text="Feature Name" />
+                <TextBox Name="featureTextBox" 
+                 Style="{StaticResource inputTextBox}" 
+                 Grid.Row="0" 
+                 Grid.Column="1" 
+                 />
+                <Button Grid.Row="0" 
+                Grid.Column="2"               
+                x:Name="addFeatureBtn"                       
+                Style="{StaticResource submitButton}"
+                Content="Add Feature"  
+                Margin="5,5,5,5" 
+                IsTabStop="False" Click="addFeatureBtn_Click">
+                </Button>
+
+
+                <DataGrid x:Name="dataGridFeatures" 
+                Grid.Column="0"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                ColumnWidth="*"
+                MinWidth="200"
+                      AutoGenerateColumns="False"
+                Style="{StaticResource dataGridStyle}"
+                HorizontalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Feature ID" 
+                                            MinWidth="100"                                   
+                                            Binding = "{Binding FeatureId}"
+                                    />
+                    <DataGridTextColumn Header="Feature" 
+                                            MinWidth="200"
+                                            Binding = "{Binding Description}"
+                                    />
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Grid>
+            
+ <!--Add new feature to the car-->           
+        <Grid Name="NewFeatureGrid"
+            Grid.ColumnSpan="4" 
+              Margin="5,5,5,5" 
+              Grid.RowSpan="3" 
+              Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+
+            <TextBlock Style="{StaticResource text}" 
+                   Text="Registration Number:" 
+                       Grid.Row="2" 
+                   Grid.Column="0"/>
+
+            <ComboBox Template="{DynamicResource ComboBoxTemplate1}" 
+                  Name="registrationComboBox" 
+                  Grid.Row="2" 
+                  Grid.Column="1"
+                  MinHeight="35" 
+                  Height="35"
+                  Margin="5"
+                  Padding="10"/>
+            <TextBlock Style="{StaticResource text}" 
+                   Text="Feature:" 
+                       Grid.Row="3" 
+                   Grid.Column="0"/>
+
+            <ComboBox Template="{DynamicResource ComboBoxTemplate1}" 
+                  Name="featureComboBox" 
+                  Grid.Row="3" 
+                  Grid.Column="1"
+                  MinHeight="35" 
+                  Height="35"
+                  Margin="5"
+                  Padding="10"/>
+            <Button Grid.Row="3" 
+                Grid.Column="2"               
+                x:Name="saveCarFeatureBtn"                       
+                Style="{StaticResource submitButton}"
+                Content="Save Car Feature"  
+                Margin="5,5,5,5" Click="saveCarFeatureBtn_Click" >
+            </Button>
+
+        </Grid>
+
+    </Grid>
+        </ScrollViewer>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="NewDesignTrial.View.RentalsByCustomerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewDesignTrial.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="625">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Search menu -->
+        <TextBlock Style="{StaticResource text}" 
+                   Text="Customer License:" 
+                   Grid.Column="1"/>
+            <ComboBox Template="{DynamicResource ComboBoxTemplate1}" 
+                  Name="licenseComboBox" 
+                  Grid.Row="0" 
+                  Grid.Column="2"
+                  MinHeight="35" 
+                  Height="35"
+                  Margin="5"
+                  Padding="10"
+                  IsEditable="False" 
+                  IsTextSearchEnabled="True"/>
+
+            <Button Grid.Row="0" 
+                Grid.Column="3"  
+                x:Name="showRentalsBtn"                       
+                Style="{StaticResource submitButton}"
+                Content="Show" 
+                Margin="5,5,5,5" 
+                IsTabStop="False" Click="showRentalsBtn_Click">
+        </Button>
+        <DataGrid x:Name="carRentalsDataGrid"
+                  Grid.Row="2"
+                  Grid.RowSpan="5"
+                 Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                  Style="{StaticResource dataGridStyle}"/>
+    </Grid>
+        </ScrollViewer>
+</UserControl>

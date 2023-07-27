@@ -1,0 +1,402 @@
+﻿<Window x:Class="NewDesignTrial.View.AdminDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewDesignTrial"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="700" 
+        Width="900"
+        MinHeight="560"
+        MinWidth="690"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip" 
+        Icon="/Assets/logo_new1.png"
+        >
+   
+    <ScrollViewer  CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+
+        <Grid >
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#DFF6FF" Offset="0.0"/>
+                    <GradientStop Color="#B1D0E0" Offset="0.4"/>
+                    <GradientStop Color="#EFFFFD" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+<!--Top panel-->
+            <Border Grid.ColumnSpan="2"
+                 MouseDown="GridMouseDown"
+                >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#2d4c66" Offset="0.0"/>
+                        <GradientStop Color="#1A132F" Offset="0.5"/>
+                        <GradientStop Color="#2d4c66" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+
+
+                <Grid HorizontalAlignment="Stretch">
+
+                    <TextBlock Text="Chesterfield Cars"
+                       Foreground="WhiteSmoke"
+                       FontWeight="SemiBold"
+                           FontSize="22"
+                           FontFamily="Fonts/#Poppins"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="left"
+                           Margin="20,0,0,0"/>
+
+<!--Minimise/ Maximise buttons-->
+                    <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            Margin="0,0,10,0">
+
+                        <Button x:Name="minimise_btn"
+                            Style="{StaticResource buttonBlack}"
+                            Content="🗕"                           
+                            Click="buttonMinimise_Click" />
+
+                        <Button 
+                            Content="☐"
+                           Style="{StaticResource buttonBlack}"
+                            Click="WindowStateBtnClick"/>
+
+                        <Button 
+                            Content="🞬"
+                            Style="{StaticResource buttonBlack}"
+                            Click="CloseBtnClick"/>
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+<!--Menu Panel-->
+
+            <StackPanel
+                    Width="230"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    Grid.Row="1"
+            Margin="0,2,0,0">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#3b5f7c" Offset="0.0"/>
+                        <GradientStop Color="#2d77a0" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+
+                <Grid Height="150"
+                  VerticalAlignment="Top"
+                  Margin="0,30,0,0">
+                    <StackPanel Orientation="Vertical">
+                        <Image
+                        Width="65" 
+                       Source="/Assets/logo_new1.png"
+                       RenderOptions.BitmapScalingMode="Fant"/>
+                        <TextBlock x:Name="helloTextBox"                        
+                           Foreground="#fbec5d"
+                           FontSize="12"
+                           FontWeight="Medium"                         
+                           Margin="0,10,0,0" TextAlignment="Center"
+                               />
+                        <Button               
+                            x:Name="updateDetailsBtn"
+                            Style="{StaticResource submitButton}"
+                            Content="Update Profile" 
+                            Background="{x:Null}" 
+                            BorderBrush="#FF1A132F"
+                            Foreground="#DFF6FF" 
+                            FontWeight="Normal" 
+                            FontStyle="Italic" 
+                            FontSize="12" Click="updateDetailsBtn_Click"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+ <!--Main Menu-->
+
+                <Menu Height="430"
+                  Background="Transparent"
+                  Margin="0,10,0,0">
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+
+<!--Main Menu - Rental Records-->
+                    <MenuItem x:Name="rentals_menu" Header= "Search Unit"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/records.png"/>
+                        </MenuItem.Icon>
+                        
+<!--rentals sub menus-->
+                        <MenuItem Header="All Available Cars"
+                              x:Name="show_car_menu"
+                              Template="{StaticResource Item_Template}"
+                                  Click="show_car_menu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        
+                        <MenuItem Header="Buy Car"
+                              x:Name="rentCar_menu"
+                                  Click="rentCar_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem Header="Return Car"
+                              x:Name="returnCar_menu"
+                                  Click="returnCar_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        
+                        <MenuItem Header="Records by Date"
+                              x:Name="records_by_date_menu"
+                              Click="records_by_date_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem Header="Records by Customer"
+                              x:Name="records_by_customer_menu"
+                              Click="records_by_customer_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        </MenuItem>
+          
+
+<!--Main Menu - Cars-->
+                    <MenuItem Header="Add Unit" 
+                              x:Name="carsMenu"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/carlogo10.png"/>
+                        </MenuItem.Icon>
+
+<!--Car sub menus-->
+
+                        <MenuItem Header="Add new Vehicle"
+                              x:Name="add_car_menu"
+                                  Click="new_car_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/plus.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+
+                        <MenuItem Header="Reorder Car"
+                              x:Name="reorder_car_menu"
+                                  Click="reorder_car_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                                <MenuItem.Icon>
+                                    <Image Source="/Assets/plus.png"/>
+                                </MenuItem.Icon>
+
+                            </MenuItem>
+                             
+                        
+                        <MenuItem Header="Show All Cars"
+                              x:Name="show_allcar_menu"
+                              Template="{StaticResource Item_Template}"
+                                  Click="show_allcar_menu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem Header="Search/ Update Car"
+                              x:Name="update_car_menu"
+                                  Click="update_car_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/update.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem Header="Search Cars"
+                              x:Name="search_car_menu_staff"
+                                  Click="search_car_menu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/update.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+<!--car features menu-->
+                        <MenuItem Header="Car Features"
+                                  Click="features_car_menu_Click"
+                              x:Name="features_car_menu"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/records.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                    </MenuItem>
+
+
+<!--Main Menu - Customers-->
+                    <MenuItem Header="Customers"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/customer.png"/>
+                        </MenuItem.Icon>
+
+<!--Customers sub menus-->
+
+                        <MenuItem x:Name="add_customer_menu" 
+                                  Header="Add Customer"
+                              Template="{StaticResource Item_Template}" 
+                                  Click="add_customer_menu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/plus.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem x:Name="searchCustomer_menu"
+                        Header="Search/ Update"
+                              Template="{StaticResource Item_Template}"
+                              Click="searchCustomer_menu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem x:Name="showAllCustomers_menu"
+                        Header="Show All"
+                              Template="{StaticResource Item_Template}"
+                              Click="showAllCustomers_menu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                    </MenuItem>
+<!--Main Menu - Employee-->
+
+                    <MenuItem Header="Employees"
+                              x:Name="employeesMenu"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/employee.png"/>
+                        </MenuItem.Icon>
+
+<!--Employees sub menus-->
+
+                        <MenuItem x:Name="addEmployeeBtn"
+                        Header="Add Employee"
+                              Template="{StaticResource Item_Template}"
+                              Click="addEmployeeBtn_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/plus.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        <MenuItem Header="Search/Update"
+                                  x:Name="searchEmployeemenu"
+                                  Click="searchEmployeemenu_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+
+                        </MenuItem>
+                        
+                        <MenuItem Header="Show All" 
+                                  Name="showAllEmployees"
+                                  Click="showAllEmployees_Click"
+                              Template="{StaticResource Item_Template}">
+                            <MenuItem.Icon>
+                                <Image Source="/Assets/search.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+              
+                    </MenuItem>
+
+<!--Main Menu - Contacts-->
+                    <MenuItem x:Name="contactsBtn"
+                        Header="Contacts"
+                              Click="contactsBtn_Click"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/phone.png"/>
+                        </MenuItem.Icon>
+
+                    </MenuItem>
+                    <!--Main Menu - Contacts-->
+                    <MenuItem x:Name="reportsBtn"
+                        Header="Reports"
+                              Click="reportsBtn_Click"
+                          Template="{StaticResource Menu_SubMenu_Template}">
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/records.png"/>
+                        </MenuItem.Icon>
+
+                    </MenuItem>
+<!--Main Menu - LogOut-->
+                    <MenuItem x:Name="LogoutBtn"  
+                          Header="Log Out"
+                          Template="{StaticResource Menu_Template}" 
+                          Click="LogoutBtn_Click"
+                          >
+                        <MenuItem.Icon>
+                            <Image Source="/Assets/Logout.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+
+            </StackPanel>
+            <StackPanel/>
+            <Grid x:Name="main_window_panel" Grid.Column="1"
+                    Grid.Row="1"  Width="Auto" HorizontalAlignment="Stretch"
+              Margin="2">
+              
+
+                <TextBlock x:Name="window_textBox" Text="Welcome to Chesterfield cars Order system"
+                       FontSize="20"
+                       FontFamily="Poppins"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" FontWeight="DemiBold" Margin="0,20,0,0"                      
+                />
+            </Grid>
+
+
+        </Grid>
+    </ScrollViewer>
+</Window>

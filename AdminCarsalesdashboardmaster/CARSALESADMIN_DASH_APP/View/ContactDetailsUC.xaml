@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="NewDesignTrial.View.ContactDetailsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewDesignTrial.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="625">
+    <Grid  Margin="5,5,5,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource text}" 
+                   Text="Person ID:" 
+                   Grid.Column="1"/>
+        <TextBox Name="inputTextBox" 
+                 Style="{StaticResource inputTextBox}" 
+                 Grid.Row="0" 
+                 Grid.Column="2" 
+                 />
+        <Button Grid.Row="0" 
+                Grid.Column="3"              
+                x:Name="showPersonBtn"                       
+                Style="{StaticResource submitButton}"
+                        Content="Show" 
+                Click="showPersonBtn_Click" HorizontalContentAlignment="Stretch" Margin="0,5,0,5">
+        </Button>
+        
+<!--Data Grid dipslyas only if data found-->
+        <Grid x:Name="contactDetailsGrid"
+            Grid.Column="1" 
+              Grid.ColumnSpan="3" 
+              Margin="5,0,0,0" 
+              Grid.RowSpan="4" 
+              Grid.Row="1"
+              Visibility="Hidden"
+              >
+            <TextBlock Style="{StaticResource text}" 
+                Text="Full Name" Margin="0,7,356,0" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource text}" 
+                Text="Address" Margin="0,59,356,0" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource text}" 
+                Text="Telephone" Margin="0,111,356,0" VerticalAlignment="Top"/>
+
+            <TextBox x:Name="nameTextBox" 
+                Style="{StaticResource readOnlyTextBox}"
+                IsReadOnly="True" Margin="176,0,5,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="addressTextBox" 
+                Style="{StaticResource readOnlyTextBox}"
+                IsReadOnly="True" Margin="176,52,5,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="telephoneTextBox" 
+                Style="{StaticResource readOnlyTextBox}"
+                IsReadOnly="True" Margin="176,104,5,0" VerticalAlignment="Top"/>
+            <Button
+                x:Name="clearBtn"
+                Style="{StaticResource submitButton}"
+                Content="Clear Fields" Margin="171,162,0,0" Click="clearBtn_Click"/>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
