@@ -15,12 +15,12 @@ SQL } MSSQL } Database Script + Stored Procedures
 
 Hi, This app loads either an Admin or Customer Ordering and Stock Search Panel/Dashboard.  You stast by logging in, as a customer username or Admin/staff username.  Depedning on which you login as you will be presented with a different user interface.  The purpose of the app is to:-
 
-*Allow user to order new cars that exist on DB system;*
-*Allow user to create a new car Itenary stock item with relevant features;
-*Allow user to edit existing car or vehicle attributes and features.
-*Allow users to search all items that have been added and edit them, also giving ability to create queries and reports against the exisiting trends and data.
+* Allow user to order new cars that exist on DB system;
+* Allow user to create a new car Itenary stock item with relevant features;
+* Allow user to edit existing car or vehicle attributes and features;
+* Allow users to search all items that have been added and edit them, also giving ability to create queries and reports against the exisiting trends and data;
 
-*(Please see next section for diagrams, screenshots and explanation of the different sections and technical code explanations)
+* (Please see next section for diagrams, screenshots and explanation of the different sections and technical code explanations)
 
 
 
