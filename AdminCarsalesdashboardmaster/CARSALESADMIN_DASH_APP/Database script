@@ -1,0 +1,239 @@
+
+
+USE [CAR_SALES2]
+GO
+/****** Object:  Table [dbo].[IndividualCar]    Script Date: 10/30/2018 11:58:58 
+AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IndividualCar](
+[CarID] [int] IDENTITY(1,1) NOT NULL,
+[Colour] [varchar](50) NOT NULL,
+[RegistrationNumber] [varchar](50) NOT NULL,
+[MOTExpiryDate] [date] NOT NULL,
+[RegistrationExpiryDate] [date] NOT NULL,
+[DateImported] [date] NOT NULL,
+[ManufactureYear] [int] NOT NULL,
+[Status] [varchar](20) NOT NULL,
+[FuelType] [varchar](20) NOT NULL,
+[Transmission] [varchar](20) NOT NULL,
+[DailyRentalPrice] [money] NOT NULL,
+[AdvanceDepositRequired] [money] NOT NULL,
+[CarModelID] [int] NOT NULL,
+ CONSTRAINT [PK_IndividualCar] PRIMARY KEY CLUSTERED 
+(
+[CarID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Car_Feature_Association]    Script Date: 10/30/2018
+11:58:58 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Car_Feature_Association](
+[CarID] [int] NOT NULL,
+[FeatureID] [int] NOT NULL,
+ CONSTRAINT [PK_Car_Feature_Association] PRIMARY KEY CLUSTERED 
+(
+[CarID] ASC,
+[FeatureID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarCustomer]    Script Date: 10/30/2018 11:58:58 AM
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarCustomer](
+[CustomerID] [int] NOT NULL,
+[LicenseNumber] [varchar](50) NOT NULL,
+[Age] [int] NOT NULL,
+[LicenseExpiryDate] [date] NOT NULL,
+ CONSTRAINT [PK_CarCustomer] PRIMARY KEY CLUSTERED 
+(
+[CustomerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarEmployee]    Script Date: 10/30/2018 11:58:59 AM
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarEmployee](
+[EmployeeID] [int] NOT NULL,
+[OfficeAddress] [varchar](150) NOT NULL,
+[PhoneExtensionNumber] [varchar](50) NOT NULL,
+[Username] [varchar](50) NOT NULL,
+[Password] [varchar](50) NOT NULL,
+[Role] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_CarEmployee] PRIMARY KEY CLUSTERED 
+(
+[EmployeeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarFeature]    Script Date: 10/30/2018 11:58:59 AM 
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarFeature](
+[FeatureID] [int] IDENTITY(1,1) NOT NULL,
+[Description] [varchar](200) NULL,
+ CONSTRAINT [PK_CarFeature] PRIMARY KEY CLUSTERED 
+(
+[FeatureID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarModel]    Script Date: 10/30/2018 11:58:59 AM 
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarModel](
+[ModelID] [int] IDENTITY(1,1) NOT NULL,
+[Model] [varchar](50) NOT NULL,
+[Manufacturer] [varchar](50) NOT NULL,
+[Size] [varchar](20) NOT NULL,
+[Seats] [int] NOT NULL,
+[Doors] [int] NOT NULL,
+ CONSTRAINT [PK_CarModel] PRIMARY KEY CLUSTERED 
+(
+[ModelID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarPerson]    Script Date: 10/30/2018 11:58:59 AM 
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarPerson](
+[PersonID] [int] IDENTITY(1,1) NOT NULL,
+[Name] [varchar](50) NOT NULL,
+[Address] [varchar](250) NOT NULL,
+[Telephone] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_CarPerson] PRIMARY KEY CLUSTERED 
+(
+[PersonID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CarRental]    Script Date: 10/30/2018 11:58:59 AM 
+******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarRental](
+[RentalID] [int] IDENTITY(1,1) NOT NULL,
+[CarID] [int] NOT NULL,
+[CustomerID] [int] NOT NULL,
+[RentDate] [date] NOT NULL,
+[ReturnDueDate] [date] NOT NULL,
+[ReturnDate] [date] NOT NULL,
+[TotalPrice] [money] NOT NULL,
+ CONSTRAINT [PK_CarRental] PRIMARY KEY CLUSTERED 
+(
+[RentalID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[CarFeature] ON 
+INSERT [dbo].[CarFeature] ([FeatureID], [Description]) VALUES (1, N'Air 
+conditioning')
+INSERT [dbo].[CarFeature] ([FeatureID], [Description]) VALUES (2, N'Rear door for
+loading')
+INSERT [dbo].[CarFeature] ([FeatureID], [Description]) VALUES (3, N'alarm system 
+')
+INSERT [dbo].[CarFeature] ([FeatureID], [Description]) VALUES (4, N'Keyless 
+door')
+SET IDENTITY_INSERT [dbo].[CarFeature] OFF
+ALTER TABLE [dbo].[IndividualCar]  WITH CHECK ADD  CONSTRAINT 
+[FK_IndividualCar_CarModel] FOREIGN KEY([CarModelID])
+REFERENCES [dbo].[CarModel] ([ModelID])
+GO
+ALTER TABLE [dbo].[IndividualCar] CHECK CONSTRAINT 
+[FK_IndividualCar_CarModel]
+GO
+ALTER TABLE [dbo].[Car_Feature_Association]  WITH CHECK ADD  CONSTRAINT 
+[FK_Car_Feature_Association_IndividualCar] FOREIGN KEY([CarID])
+REFERENCES [dbo].[IndividualCar] ([CarID])
+GO
+ALTER TABLE [dbo].[Car_Feature_Association] CHECK CONSTRAINT 
+[FK_Car_Feature_Association_IndividualCar]
+GO
+ALTER TABLE [dbo].[Car_Feature_Association]  WITH CHECK ADD  CONSTRAINT 
+[FK_Car_Feature_Association_CarFeature] FOREIGN KEY([FeatureID])
+REFERENCES [dbo].[CarFeature] ([FeatureID])
+GO
+ALTER TABLE [dbo].[Car_Feature_Association] CHECK CONSTRAINT 
+[FK_Car_Feature_Association_CarFeature]
+GO
+ALTER TABLE [dbo].[CarCustomer]  WITH CHECK ADD  CONSTRAINT 
+[FK_CarCustomer_CarPerson] FOREIGN KEY([CustomerID])
+REFERENCES [dbo].[CarPerson] ([PersonID])
+GO
+ALTER TABLE [dbo].[CarCustomer] CHECK CONSTRAINT [FK_CarCustomer_CarPerson]
+GO
+ALTER TABLE [dbo].[CarEmployee]  WITH CHECK ADD  CONSTRAINT 
+[FK_CarEmployee_CarPerson] FOREIGN KEY([EmployeeID])
+REFERENCES [dbo].[CarPerson] ([PersonID])
+GO
+ALTER TABLE [dbo].[CarEmployee] CHECK CONSTRAINT [FK_CarEmployee_CarPerson]
+GO
+ALTER TABLE [dbo].[CarRental]  WITH CHECK ADD  CONSTRAINT 
+[FK_CarRental_IndividualCar] FOREIGN KEY([CarID])
+REFERENCES [dbo].[IndividualCar] ([CarID])
+GO
+ALTER TABLE [dbo].[CarRental] CHECK CONSTRAINT [FK_CarRental_IndividualCar]
+GO
+ALTER TABLE [dbo].[CarRental]  WITH CHECK ADD  CONSTRAINT 
+[FK_CarRental_CarCustomer] FOREIGN KEY([CustomerID])
+REFERENCES [dbo].[CarCustomer] ([CustomerID])
+GO
+ALTER TABLE [dbo].[CarRental] CHECK CONSTRAINT [FK_CarRental_CarCustomer]
+GO
+ALTER TABLE [dbo].[IndividualCar]  WITH CHECK ADD  CONSTRAINT 
+[CK_IndividualCar] CHECK  (([Status]='rented' OR [Status]='available for rent' OR
+[Status]='under repair'))
+GO
+ALTER TABLE [dbo].[IndividualCar] CHECK CONSTRAINT [CK_IndividualCar]
+GO
+ALTER TABLE [dbo].[IndividualCar]  WITH CHECK ADD  CONSTRAINT 
+[CK_IndividualCar_FuelType] CHECK  (([FuelType]='Petrol' OR [FuelType]='Diesel'))
+GO
+ALTER TABLE [dbo].[IndividualCar] CHECK CONSTRAINT [CK_IndividualCar_FuelType]
+GO
+ALTER TABLE [dbo].[IndividualCar]  WITH CHECK ADD  CONSTRAINT 
+[CK_IndividualCar_Transmission] CHECK  (([Transmission]='Manual' OR 
+[Transmission]='Automatic'))
+GO
+ALTER TABLE [dbo].[IndividualCar] CHECK CONSTRAINT 
+[CK_IndividualCar_Transmission]
+GO
+ALTER TABLE [dbo].[CarModel]  WITH CHECK ADD  CONSTRAINT [CK_CarModel_Size] 
+CHECK  (([Size]='standard' OR [Size]='medium' OR [Size]='large'))
+GO
+ALTER TABLE [dbo].[CarModel] CHECK CONSTRAINT [CK_CarModel_Size]
+GO

@@ -1,0 +1,125 @@
+USE [CAR_SALES2]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Warren
+-- Create date: 
+-- Description:	
+-- =============================================
+ALTER PROCEDURE [dbo].[getCustomerTotalRent] 
+	@p1 varchar(50)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT [CarCustomer-PB].CustomerID AS ID, SUM([CarRental-PB].TotalPrice) as TotalPrice
+	from [CarRental-PB]
+	INNER JOIN [CarCustomer-PB] on [CarRental-PB].CustomerID=[CarCustomer-PB].CustomerID 
+	where [CarCustomer-PB].LicenseNumber=@p1 
+	group by [CarCustomer-PB].CustomerID
+END
+
+USE [DAD_CAR_SALES2]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Warren
+-- Create date: 
+-- Description:	
+-- =============================================
+ALTER PROCEDURE [dbo].[getSalesByMonth] 
+	@p1 int, 
+	@p2 int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	DECLARE @ID AS int
+SET @ID = 1
+
+	SELECT @ID as ID,SUM([CarRental-PB].TotalPrice) as TotalPrice
+	from [CarRental-PB]
+	where MONTH([CarRental-PB].RentDate)=@p1 AND
+	YEAR([CarRental-PB].RentDate)=@p2
+END
+
+
+USE [CAR_SALES2]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[getTotalRentForCarModel] 
+
+	@p0  varchar(50),
+	@start date,
+	@end date
+AS
+BEGIN
+	SET NOCOUNT ON;
+	
+	SELECT [CarModel-PB].ModelID as ID, SUM([CarRental-PB].TotalPrice) as TotalPrice
+	from [CarRental-PB]
+	INNER JOIN [IndividualCar-PB] on [CarRental-PB].CarID=[IndividualCar-PB].CarID 
+	INNER JOIN [CarModel-PB] on [IndividualCar-PB].CarModelID=[CarModel-PB].ModelID
+	where [CarModel-PB].Model=@p0 AND	
+	[CarRental-PB].RentDate >= convert(DATE,@start) AND
+	[CarRental-PB].RentDate<=convert(DATE,@end)
+	group by [CarModel-PB].ModelID
+END
+
+USE [CAR_SALES2]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Warren
+-- Create date: 
+-- Description:	
+-- =============================================
+ALTER PROCEDURE [dbo].[leastFiveRentedCarModels] 
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT TOP(5) [CarModel-PB].ModelID, [CarModel-PB].Model,SUM([CarRental-PB].TotalPrice) AS Total
+	from [CarRental-PB] 
+	INNER JOIN [IndividualCar-PB] on [CarRental-PB].CarID=[IndividualCar-PB].CarID 
+	INNER JOIN [CarModel-PB] on [IndividualCar-PB].CarModelID=[CarModel-PB].ModelID
+	group by[CarModel-PB].ModelID, [CarModel-PB].Model
+	order by SUM([CarRental-PB].TotalPrice) ASC
+END
+
+USE [CAR_SALES2]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Warren
+-- Create date: 
+-- Description:	
+-- =============================================
+ALTER PROCEDURE [dbo].[topFiveCars] 
+	-- Add the parameters for the stored procedure here
+
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT TOP(5) [CarRental-PB].CarID AS ID,[IndividualCar-PB].RegistrationNumber AS Registration, SUM([CarRental-PB].TotalPrice) AS Total
+	from [CarRental-PB] INNER JOIN
+	[IndividualCar-PB] on [CarRental-PB].CarID=[IndividualCar-PB].CarID
+	group by [CarRental-PB].CarID, [IndividualCar-PB].RegistrationNumber
+	order by SUM([CarRental-PB].TotalPrice) DESC
+END
+
