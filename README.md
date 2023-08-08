@@ -24,3 +24,68 @@ Hi, This app loads either an Admin or Customer Ordering and Stock Search Panel/D
 
 
 
+
+
+
+# Technical Explanation
+
+
+
+## Models :-
+
+DAO:-
+
+
+
+
+
+
+
+DB example:-
+
+DAD_CarSalesdbContext.cs:-
+
+
+
+
+
+
+
+
+
+
+IndividualCar.cs   :-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Database Structures
+
+
+
+
+
+
+
+
+
+
+#Stored Procedures
+
+
