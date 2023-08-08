@@ -13,7 +13,7 @@ SQL } MSSQL } Database Script + Stored Procedures
 
 # INTRODUCTION
 
-Hi, This app loads either an Admin or Customer Ordering and Stock Search Panel/Dashboard.  You stast by logging in, as a customer username or Admin/staff username.  Depedning on which you login as you will be presented with a different user interface.  The purpose of the app is to:-
+Hi, This app loads either an Admin or Customer Ordering and Stock Search Panel/Dashboard.  You start by logging in, as a customer username or Admin/staff username.  Depending on which you login as you will be presented with a different user interface.  The purpose of the app is to:-
 
 * Allow user to order new cars that exist on DB system;
 * Allow user to create a new car Itenary stock item with relevant features;
