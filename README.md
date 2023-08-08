@@ -32,7 +32,7 @@ Hi, This app loads either an Admin or Customer Ordering and Stock Search Panel/D
 
 
 ## Models :-
-
+<br></br>
 DAO:-
 
 
@@ -40,9 +40,9 @@ DAO:-
 
 
 
-
+<br></br>
 DB example:-
-
+<br></br>
 DAD_CarSalesdbContext.cs:-
 
 
@@ -53,8 +53,9 @@ DAD_CarSalesdbContext.cs:-
 
 
 
-
+<br></br>
 IndividualCar.cs   :-
+<br></br>
 
 
 
@@ -74,10 +75,8 @@ IndividualCar.cs   :-
 
 
 
-
-#Database Structures
-
-
+# Database Structures
+<br></br>
 
 
 
@@ -86,6 +85,7 @@ IndividualCar.cs   :-
 
 
 
-#Stored Procedures
 
+# Stored Procedures
+<br></br>
 
